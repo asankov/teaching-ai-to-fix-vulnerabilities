@@ -524,8 +524,8 @@ layout: section
     </div>
     <div class="flex flex-col items-center">
       <div class="font-bold text-xl">Download the slides</div>
-      <img style="width: 150px; margin: auto;" src="./assets/qr-github.png"/>
-      <div class="font-bold text-xl"><a href="https://asankov.dev/go-generics">asankov.dev/go-generics</a></div>
+      <img style="width: 150px; margin: auto;" src="./assets/qr.png"/>
+      <div class="font-bold text-xl"><a href="https://asankov.dev/teaching-ai-to-fix-vulnerabilities">asankov.dev/teaching-ai-to-fix-vulnerabilities</a></div>
     </div>
   </div>
 
