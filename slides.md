@@ -210,31 +210,16 @@ flowchart TD
 </div>
 
 ---
-layout: center
----
-
-# Tools
-
-An agent can call external tools to take actions or gather information.
-
-```mermaid
-flowchart LR
-    LLM --> W[Web Search]
-    LLM --> C[Run Code]
-    LLM --> D[Read File]
-    LLM --> API[Call API]
-    W & C & D & API --> LLM
-```
-
----
 layout: full
 ---
 
 # The Problem
 
+<v-click>
 Endless lists of vulnerabilities
 
 <img src="./assets/vulns.png" style="max-height: 90vh; margin: auto;" />
+</v-click>
 
 ---
 layout: full
@@ -242,7 +227,7 @@ layout: full
 
 # The Solution
 
-<!--Build an AI agent that remediates security vulnerabilities (CVEs) in container images.-->
+Build an AI agent that remediates security vulnerabilities (CVEs) in container images.
 
 **Input:**
 - container image
@@ -250,7 +235,6 @@ layout: full
 - a list of vulnerabilities inside the container image
   - system (Linux packages, binaries, etc.)
   - application (Java/JS/Python/Go, etc. libraries and dependencies)
-- credentials to external providers (container registries, artifactories, etc.)
 
 **Expected output**:
 - a Pull Request with changes that remediate vulnerabilities in that image
@@ -263,7 +247,7 @@ layout: full
 
 Use multiple AI agents, but orchestrate everything in code
 
-```python{1-23|2-3|5-6|8-9|11-12|14-18|20-23|1-23}
+```python{1-23|2-3|5-6|8-9|11-12|14-15|17-18|1-23}
 for image in vulnerable_images:
     # an AI agent that finds the Dockerfile in the code repo
     dockerfile = find_dockerfile(image.git_repo)
@@ -278,9 +262,6 @@ for image in vulnerable_images:
     remediate_application_vulnerabilities(image.vulnerabilities, dependency_file)
     
     # an AI agent that finds the build command and builds the image with the new changes
-    # we do that for 2 reasons:
-    # 1. to make sure the agent has not made some stupid change that breaks the build
-    # 2. so that we can scan the new image and make sure we've fixed a good amount of vulnerabilities
     new_image = build_image(image.git_repo)
     
     # [deterministic] scan the newly build image
@@ -382,24 +363,11 @@ Nonsense like this:
 layout: full
 ---
 
-# Attempt #1 Retrospective
-
-Three main mistakes
-
-<span style="color: red; font-weight: bold;">Mistake #1:</span> LLMs tend to overdo things, especially when given tasks that are not properly defined and scoped
-
-<span style="color: red; font-weight: bold;">Mistake #2:</span> We were doing stuff which was not mandatory and could have been done on a best-effort basis
-
-<span style="color: red; font-weight: bold;">Mistake #3:</span> We were treating all images as equal
-
----
-layout: full
----
-
 # Attempt #2
 
 Consolidate logic into a self-orchestrating single AI agent with multiple tools
 
+<v-click>
 ```python
 for image in vulnerable_images:
     result = agent.run(prompt=f"""
@@ -426,6 +394,7 @@ for image in vulnerable_images:
     'vulnerabilities': image.vulnerabilities.sort(key=lambda v: v.severity, reverse=True)[:10]
 })
 ```
+</v-click>
 
 ---
 layout: full
@@ -501,7 +470,7 @@ layout: full
 # Will AI Replace Us?
 
 
-<div v-click v-click-hide="2" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10rem; font-weight: 900; color: red; opacity: 0.9;">
+<div v-click="[1, 2]" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10rem; font-weight: 900; color: red; opacity: 0.9;">
   No.
 </div>
 
