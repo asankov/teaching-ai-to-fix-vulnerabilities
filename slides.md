@@ -409,6 +409,20 @@ Gave more control to the users
   <img v-click src="./assets/vulns_fix_2.png" style="max-height: 75vh; position: absolute; top: 0; left: 0; width: 100%; object-fit: contain;" />
 </div>
 
+---
+layout: full
+---
+
+<div class="slide-container" style="position: relative; width: 100%; height: 100%;">
+
+# The Result
+
+Small, boring ... but mergeable PRs
+
+<img v-click src="/assets/pr1.png" style="position: absolute; top: 20%; left: 2%; max-width: 96%; max-height: 75%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
+<img v-click src="/assets/pr2.png" style="position: absolute; bottom: 2%; left: 2%; max-width: 65%; max-height: 60%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />
+
+</div>
 
 ---
 layout: full
